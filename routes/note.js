@@ -54,4 +54,18 @@ router.delete('/note/:id', async(req, res) => {
     }
 })
 
+router.put('/note/:id', async(req, res) => {
+    const noteId = req.params.id;
+    const body = req.body;
+    try {
+        const noteDB = await Note.findOneAndUpdate({ _id: noteId }, body, { new: true });
+        res.json(noteDB);
+    } catch (err) {
+        return res.status(400).json({
+            message: 'Error in command',
+            err
+        });
+    }
+})
+
 module.exports = router;
