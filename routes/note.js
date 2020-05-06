@@ -16,4 +16,17 @@ router.post('/newnote', async(req, res) => {
     }
 })
 
+router.get('/note/:id', async(req, res) => {
+    const noteId = req.params.id;
+    try {
+        const noteDB = await Note.findOne({ _id: noteId });
+        res.json(noteDB);
+    } catch (err) {
+        return res.status(400).json({
+            message: 'Error in command',
+            err
+        });
+    }
+})
+
 module.exports = router;

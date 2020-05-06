@@ -27,6 +27,8 @@ app.use(express.urlencoded({ extended: true }));
 //   res.send("Hello world!");
 // });
 
+app.use('/api', require('./routes/note'));
+
 app.use(history());
 app.use(express.static(path.join(__dirname, "public")));
 
