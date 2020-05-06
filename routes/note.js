@@ -29,4 +29,16 @@ router.get('/note/:id', async(req, res) => {
     }
 })
 
+router.get('/allnotes', async(req, res) => {
+    try {
+        const notesDB = await Note.find();
+        res.json(notesDB);
+    } catch (err) {
+        return res.status(400).json({
+            message: 'Error in command',
+            err
+        });
+    }
+})
+
 module.exports = router;
