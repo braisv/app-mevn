@@ -2,9 +2,21 @@ import express  from "express";
 import morgan   from "morgan";
 import cors     from "cors";
 import path     from "path";
+import mongoose from "mongoose";
 import history  from "connect-history-api-fallback";
 
 const app       = express();
+const uri       = "mongodb://localhost:27017/app-mevn";
+const options   = {
+                useNewUrlParser: true,
+                useCreateIndex: true,
+                useUnifiedTopology: true
+                };
+
+mongoose.connect(uri, options).then(
+  () => { console.log("Connected to MongoDB"); },
+  (err) => { err; }
+  );
 
 app.use(morgan("tiny"));
 app.use(cors());
